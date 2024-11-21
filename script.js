@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskList = document.getElementById("taskList");
 
     // Load tasks from localStorage on page load
-    const loadTasks = () => {
+    const LoadTasks = () => {
         const tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Loading tasks from the localStorage and parsing it to JSON format
         taskList.innerHTML = '';
         tasks.forEach((task, index) => {
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
         tasks[index].completed = !tasks[index].completed;
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        loadTasks();
+        LoadTasks();
     };
 
     // Delete task
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
         tasks.splice(index, 1);
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        loadTasks();
+        LoadTasks();
     };
 
     // Add a new task
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
             tasks.push({ text: taskText, completed: false }); // Pushing task into tasks array
             localStorage.setItem("tasks", JSON.stringify(tasks));
             taskInput.value = ''; // Clear the input field
-            loadTasks();
+            LoadTasks();
         }
     });
 
     // Load tasks initially
-    loadTasks();
+    LoadTasks();
 });
